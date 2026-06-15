@@ -303,6 +303,12 @@ nudisco/
 │     ├─ mesh-broadcaster.js # ← the swappable broadcast layer (mesh today)
 │     ├─ broadcast.js        # broadcaster UI
 │     └─ listener.js         # listener UI
+├─ ios/                # optional native iOS listener (locked-screen playback) — see ios/README.md
+│  ├─ project.yml      # XcodeGen spec (Swift + stasel/WebRTC SPM)
+│  └─ Nudisco/*.swift  # same signaling protocol; just another WebRTC listener
+├─ test/
+│  ├─ smoke.mjs        # server + signaling relay  (npm test)
+│  └─ e2e.mjs          # real-browser WebRTC audio  (npm run test:e2e)
 ├─ scripts/gen-cert.sh
 └─ package.json
 ```
@@ -318,7 +324,17 @@ N peer connections, and have listeners consume from it. The signaling protocol
 
 ---
 
-## 8. Run reference
+## 8. Native iOS app (optional — for locked-screen playback)
+
+The web listener pauses when an iPhone **locks or backgrounds** (iOS Safari
+suspends WebRTC — an Apple limitation with no web workaround). If guests want to
+**pocket a locked phone and keep listening**, there's a native iOS app in
+[`ios/`](ios/README.md). It's just another WebRTC listener, so the **server and
+broadcaster don't change** — the web listener still works for no-install guests,
+and the app is additive (and a bit lower latency). Distribution is via TestFlight
+(needs an Apple Developer account). See [`ios/README.md`](ios/README.md).
+
+## 9. Run reference
 
 | Command | What |
 |---|---|
