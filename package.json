@@ -1,0 +1,25 @@
+{
+  "name": "nudisco",
+  "version": "1.0.0",
+  "description": "LAN silent-disco: one-broadcaster WebRTC audio to many phones, tuned for low + consistent latency so phone audio lines up with room speakers.",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "start:https": "node src/server.js --https",
+    "gen-cert": "bash scripts/gen-cert.sh",
+    "test": "node test/smoke.mjs",
+    "test:e2e": "node test/e2e.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4",
+    "ws": "^8.18.0"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "puppeteer-core": "^25.1.0"
+  }
+}

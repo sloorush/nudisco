@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0d12" />
+  <title>nudisco · broadcast</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <main class="app broadcast">
+    <header class="brand">
+      <span class="logo">◖◗</span>
+      <h1>nudisco <span class="sub">broadcaster</span></h1>
+    </header>
+
+    <div class="grid">
+      <!-- Join column -->
+      <section class="card">
+        <h2>Guests join here</h2>
+        <div class="qrwrap"><img id="qr" class="qr" alt="join QR" /></div>
+        <div class="urlrow">
+          <code id="joinUrl">loading…</code>
+          <button class="secondary tiny" id="copyBtn">copy</button>
+        </div>
+        <p class="hint">
+          Scan the QR or type the URL into a phone browser (Safari / Chrome).
+          Same Wi-Fi, no app to install.
+        </p>
+        <p class="hint">
+          <a id="houseLink" href="/?house=1" target="_blank" rel="noopener">Open House Speaker mode →</a>
+          (on this Mac, to drive your room speakers through the same delay)
+        </p>
+      </section>
+
+      <!-- Broadcast column -->
+      <section class="card">
+        <h2>Broadcast</h2>
+
+        <button class="primary" id="enableBtn">Enable &amp; list audio inputs</button>
+
+        <div class="ctl" id="deviceRow" hidden>
+          <span>Input</span>
+          <select id="deviceSelect"></select>
+        </div>
+        <button class="primary" id="startBtn" hidden>● Start broadcasting</button>
+        <button class="secondary" id="stopBtn" hidden>■ Stop</button>
+
+        <div class="statline">
+          <span id="status" class="status status-idle">Idle</span>
+        </div>
+
+        <div class="metricrow">
+          <div class="metric">
+            <div class="metricnum"><span id="count">0</span></div>
+            <div class="metriclabel">listeners</div>
+          </div>
+        </div>
+
+        <div class="meterwrap" title="input level">
+          <div class="meterfill" id="meterFill"></div>
+          <div class="meterpeak" id="meterPeak"></div>
+        </div>
+        <p class="hint">Input level (BlackHole). If this stays flat, check your DJ app's output routing.</p>
+      </section>
+    </div>
+
+    <!-- Latency / sync -->
+    <section class="card wide">
+      <h2>Latency &amp; speaker sync</h2>
+      <div class="latbox big">
+        <div class="latnum" id="latencyBig">— ms</div>
+        <div class="latlabel">recommended room-speaker delay</div>
+        <div class="latdetail" id="latencyNote">Waiting for a phone to report latency…</div>
+      </div>
+
+      <table class="ltable" id="listenerTable" hidden>
+        <thead>
+          <tr><th>listener</th><th>state</th><th>est. latency</th><th>net RTT</th><th>buffer</th></tr>
+        </thead>
+        <tbody id="listenerBody"></tbody>
+      </table>
+    </section>
+
+    <footer class="foot">
+      Mesh broadcast · sized for ~15 listeners · LAN-only (host ICE, no STUN/TURN)
+    </footer>
+  </main>
+
+  <script type="module" src="/js/broadcast.js"></script>
+</body>
+</html>
