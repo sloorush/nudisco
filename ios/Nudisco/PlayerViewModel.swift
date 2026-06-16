@@ -35,6 +35,7 @@ final class PlayerViewModel: ObservableObject {
         manualStop = false
         isActive = true
         status = .connecting
+        AudioSessionManager.activate()      // turn on the audio session now (not at launch)
         AudioSessionManager.setupRemoteCommands(
             play: { [weak self] in self?.setMuted(false) },
             pause: { [weak self] in self?.setMuted(true) })

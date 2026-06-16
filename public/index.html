@@ -3,15 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0b0d12" />
-  <title>nudisco 🎧</title>
+  <meta name="theme-color" content="#ffe500" />
+  <title>nudisco by enchante</title>
+  <link rel="icon" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
   <main class="app listener" id="app">
     <header class="brand">
-      <span class="logo">◖◗</span>
-      <h1 id="title">nudisco</h1>
+      <img class="logo" src="/img/logo.svg" alt="" />
+      <div class="wordmark">
+        <h1 id="title">nudisco</h1>
+        <span class="byline">by <b>enchante</b></span>
+      </div>
     </header>
 
     <p class="warn" id="warn" hidden></p>
@@ -30,14 +35,6 @@
         <div class="latlabel">estimated latency</div>
         <div class="latdetail" id="latencyDetail">—</div>
       </div>
-
-      <label class="ctl">
-        <span>Volume</span>
-        <input type="range" id="volume" min="0" max="1" step="0.01" value="1" />
-      </label>
-      <p class="hint" id="volNote" hidden>
-        On iPhone/iPad use the hardware volume buttons — Safari ignores in-page volume.
-      </p>
 
       <div class="ctl" id="bufferRow">
         <span>Buffer</span>
@@ -64,7 +61,7 @@
 
     <audio id="player" playsinline></audio>
 
-    <footer class="foot">LAN silent disco · keep this tab open · wired earphones recommended</footer>
+    <footer class="foot">nudisco by enchante · keep this tab open · wired earphones recommended</footer>
   </main>
 
   <script type="module" src="/js/listener.js"></script>

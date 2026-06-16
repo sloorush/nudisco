@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="enchante">
+  <rect width="120" height="120" rx="28" fill="#FFE500"/>
+  <path d="M34 60 C34 44 60 44 60 60 C60 76 86 76 86 60 C86 44 60 44 60 60 C60 76 34 76 34 60Z"
+        fill="none" stroke="#0D0E12" stroke-width="8" stroke-linecap="round"/>
+</svg>

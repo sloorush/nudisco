@@ -1,6 +1,6 @@
 // Listener page (open on each phone at http://<mac-lan-ip>:PORT/).
 // Big "Tap to Join" (mobile autoplay needs a gesture), then receive + play the
-// broadcaster's audio. Shows status, volume, estimated latency, reconnect.
+// broadcaster's audio. Shows status, estimated latency, buffer preset, reconnect.
 //
 // House Speaker mode (?house=1, run on the Mac): adds an OUTPUT device picker so
 // you can route this tab to your room speakers. Because it rides the same
@@ -9,7 +9,7 @@
 import {
   Signal, RTC_CONFIG, configureOpus, preferRed,
   BUFFER_PRESETS, getBufferPref, setBufferPref, PIPELINE_CONST_MS,
-  webrtcAvailable, isIOS,
+  webrtcAvailable,
 } from './rtc-common.js';
 
 const $ = (id) => document.getElementById(id);
@@ -22,8 +22,6 @@ const els = {
   status: $('status'),
   statusDot: $('statusDot'),
   controls: $('controls'),
-  volume: $('volume'),
-  volNote: $('volNote'),
   latency: $('latency'),
   latencyDetail: $('latencyDetail'),
   reconnectBtn: $('reconnectBtn'),
@@ -197,18 +195,6 @@ els.player.addEventListener('playing', () => { els.resume.hidden = true; });
 document.addEventListener('visibilitychange', () => {
   if (!document.hidden && joined && els.player.paused) playAudio();
 });
-
-// ---------------------------------------------------------------------------
-// Volume
-// ---------------------------------------------------------------------------
-els.volume.addEventListener('input', () => {
-  els.player.volume = parseFloat(els.volume.value);
-});
-els.player.volume = parseFloat(els.volume.value);
-if (isIOS()) {
-  // iOS ignores HTMLMediaElement.volume — the slider can't work there.
-  els.volNote.hidden = false;
-}
 
 // ---------------------------------------------------------------------------
 // Buffering (smoothness vs latency) — applied live to the receiver

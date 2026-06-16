@@ -11,30 +11,32 @@ import MediaPlayer
 ///      and behaves like a phone call. We override it to .playback BEFORE the
 ///      peer connection initializes its audio unit.
 enum AudioSessionManager {
-    /// Call once at launch, before creating any WebRTCClient.
-    static func configureForPlayback() {
-        // libwebrtc's default audio engine drives ONE audio unit that includes an
-        // input element, so the session needs an input route. A pure .playback
-        // session starves it and NOTHING plays (and the latency readout stays
-        // blank because no samples are emitted). Use .playAndRecord — what
-        // libwebrtc expects — and route to the speaker / Bluetooth. This is also
-        // why iOS asks for the microphone: it's needed to start the audio unit.
-        // nudisco adds no local track, so it never records or transmits anything.
+    /// Cheap, non-blocking — call at launch. Just tells libwebrtc which audio
+    /// category to use when it later starts the audio unit; does NOT touch the
+    /// audio hardware (so it doesn't slow down app launch).
+    ///
+    /// libwebrtc's default engine drives ONE audio unit that includes an input
+    /// element, so the session needs an input route — a pure .playback session
+    /// starves it and nothing plays. We use .playAndRecord (what libwebrtc
+    /// expects) routed to speaker / Bluetooth. (This is also why iOS asks for the
+    /// mic — see note below; we never record or transmit it.)
+    static func prepare() {
         let rtc = RTCAudioSessionConfiguration.webRTC()
         rtc.category = AVAudioSession.Category.playAndRecord.rawValue
         rtc.categoryOptions = [.defaultToSpeaker, .allowBluetooth, .allowBluetoothA2DP]
         rtc.mode = AVAudioSession.Mode.default.rawValue
         RTCAudioSessionConfiguration.setWebRTC(rtc)
+    }
 
-        // Apply via the (string-based) configuration object in one call — avoids
-        // RTCAudioSession.setCategory/setMode whose argument types differ between
-        // libwebrtc versions (String vs AVAudioSession.Category/.Mode).
+    /// Activate the session — call when connecting (audio is imminent), NOT at
+    /// launch. Activation negotiates the route with the OS and can block briefly.
+    static func activate() {
         let session = RTCAudioSession.sharedInstance()
         session.lockForConfiguration()
         do {
-            try session.setConfiguration(rtc, active: true)
+            try session.setConfiguration(RTCAudioSessionConfiguration.webRTC(), active: true)
         } catch {
-            print("audio session config failed:", error)
+            print("audio session activate failed:", error)
         }
         session.unlockForConfiguration()
     }

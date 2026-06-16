@@ -1,4 +1,4 @@
-# nudisco 🎧
+# nudisco 🎧 · *by enchante*
 
 A local-network **silent disco** for a home party. You DJ on a Mac; guests listen
 on their phones' earphones by opening a URL — **no app to install**. Built for a
@@ -16,6 +16,9 @@ tuned to line up with the speakers as closely as possible.
 - Minimal dependencies: Node + [`ws`](https://www.npmjs.com/package/ws) +
   [`qrcode`](https://www.npmjs.com/package/qrcode). No build toolchain, vanilla
   JS on the client.
+- Optional **native iOS app** ([`ios/`](ios/README.md)) for guests who want to
+  **lock their phone / pocket it** and keep listening — the web page can't (iOS
+  Safari suspends WebRTC when locked). See [§8](#8-native-ios-app-optional--for-locked-screen-playback).
 
 ---
 
