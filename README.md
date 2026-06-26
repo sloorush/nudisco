@@ -350,3 +350,20 @@ and the app is additive (and a bit lower latency). Distribution is via TestFligh
 | `PORT=80 npm start` | port via env var (80 may need `sudo`) |
 
 URLs: broadcaster `…/broadcast` · listener `…/` · House Speaker `…/?house=1`.
+
+## 10. Legal & credits
+
+- **Privacy policy:** [`PRIVACY.md`](PRIVACY.md) — nudisco collects no data, has no
+  servers, no analytics, no tracking.
+- **Terms of use:** [`TERMS.md`](TERMS.md) — incl. that broadcasting copyrighted
+  music may require licenses (the DJ's responsibility).
+- **Publishing to the App Store / TestFlight:** [`ios/APPSTORE.md`](ios/APPSTORE.md)
+  (privacy "nutrition label", review notes, required URLs, checklist).
+- **Type:** [Satoshi](https://www.fontshare.com/fonts/satoshi) by the Indian Type
+  Foundry, bundled under the Fontshare / ITF Free Font License.
+- **Realtime audio:** browser WebRTC; the iOS app uses
+  [stasel/WebRTC](https://github.com/stasel/WebRTC) (libwebrtc), BSD-licensed.
+
+Host `PRIVACY.md` and `TERMS.md` at public URLs (e.g. on enchante.events) to enter
+in App Store Connect. Confirm the legal entity, jurisdiction, and support email in
+those files before publishing.

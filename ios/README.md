@@ -55,6 +55,12 @@ In Xcode:
    lock-screen controls.
 
 ## TestFlight (so guests can install)
+> **Full store/legal checklist** — privacy "nutrition label", required URLs, the
+> all-important App Review notes (this app is LAN-only, so a reviewer needs a demo
+> broadcaster), age rating, listing copy — is in **[APPSTORE.md](APPSTORE.md)**.
+> The privacy manifest (`Nudisco/PrivacyInfo.xcprivacy`) and export-compliance flag
+> are already in the project.
+
 1. In App Store Connect, create an app record with bundle id
    `com.nudisco.listener` (or change it in `project.yml`).
 2. Xcode ▸ **Product ▸ Archive** ▸ **Distribute App ▸ App Store Connect ▸ Upload**.
