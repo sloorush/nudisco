@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!--
+      nudisco broadcaster runs a small LAN server and captures system audio.
+      It is intentionally NOT sandboxed (App Sandbox would complicate binding a
+      LAN port and using Core Audio taps) and is distributed with Developer ID +
+      notarization + Hardened Runtime. Under Hardened Runtime, audio capture needs
+      this entitlement; the actual user prompt is the system-audio capture prompt
+      (NSAudioCaptureUsageDescription). If notarization/runtime ever rejects it,
+      this is the first knob to revisit.
+    -->
+    <key>com.apple.security.device.audio-input</key>
+    <true/>
+</dict>
+</plist>

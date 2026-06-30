@@ -21,6 +21,18 @@ final class PlayerViewModel: ObservableObject {
     @Published var isMuted = false
     @Published var isActive = false       // a connect attempt is in progress / live
 
+    init() {
+        #if DEBUG
+        // Screenshot/demo state — never compiled into Release. Launch with `--demo`
+        // (`simctl launch … --demo`) to render the connected screen with no session.
+        if CommandLine.arguments.contains("--demo") {
+            isActive = true
+            status = .live
+            latencyText = "92 ms"
+        }
+        #endif
+    }
+
     private var signaling: Signaling?
     private var webrtc: WebRTCClient?
     private var serverURL: URL?

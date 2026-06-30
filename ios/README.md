@@ -23,6 +23,10 @@ broadcast, keeps playing with the screen locked, and shows estimated latency. Se
 
 ---
 
+| tap to join | connected (lock-screen playback) |
+|---|---|
+| ![nudisco iOS — join](Screenshots/01-join.png) | ![nudisco iOS — connected](Screenshots/02-connected.png) |
+
 ## Prerequisites
 - A Mac with **Xcode** (16+).
 - An **Apple Developer account** ($99/yr) — required for TestFlight (below). You

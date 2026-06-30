@@ -19,6 +19,10 @@ tuned to line up with the speakers as closely as possible.
 - Optional **native iOS app** ([`ios/`](ios/README.md)) for guests who want to
   **lock their phone / pocket it** and keep listening — the web page can't (iOS
   Safari suspends WebRTC when locked). See [§8](#8-native-ios-app-optional--for-locked-screen-playback).
+- Optional **native macOS broadcaster app** ([`mac/`](mac/README.md)) — one app
+  the DJ opens with **no BlackHole, no terminal, no routing setup** (it captures
+  system/app audio with a Core Audio tap and runs the server itself). The Node
+  `npm start` path below still works and is the simplest way to develop/test.
 
 ---
 
